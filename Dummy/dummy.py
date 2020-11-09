@@ -1,3 +1,5 @@
+
+
 import pyttsx3 #pip install pyttsx3
 import speech_recognition as sr #pip install speechRecognition
 import datetime
@@ -80,8 +82,8 @@ def sendEmail(to, content):
     server = smtplib.SMTP('smtp.gmail.com', 587)
     server.ehlo()
     server.starttls()
-    server.login('kusukuntla123@gmail.com', 'saisriker*123')
-    server.sendmail('kusukuntla123@gmail.com', to, content)
+    server.login('mail_id, 'password')
+    server.sendmail('mail_id', to, content)
     server.close()
 
 if __name__ == "__main__":
@@ -113,12 +115,12 @@ if __name__ == "__main__":
         elif 'call' in queryy:
             speak('Calling you now')
             
-            account_sid = "AC55bb150e7dd00669a80c61444dc009e5"
-            auth_token = "af5fe7449f116476ac8c2d26f1fd83fd"
+            account_sid = "Insert your Sid here"
+            auth_token = "Insert your authentication token here"
             client = Client(account_sid, auth_token)
             call = client.calls.create(
-                 to="+918555860592",
-                 from_="+12058579317",
+                 to="...",#insert the number you want to call with the country code"
+                 from_=".....",# insert the number you get from twilio
                 url="http://demo.twilio.com/docs/classic.mp3"
              )
             print(call.sid)
@@ -137,14 +139,14 @@ if __name__ == "__main__":
             speak(f"Sir, the time is {strTime}")
 
         elif 'open code' in queryy:
-            codePath = "C:\\Users\\VASU\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe"
+            codePath = "...."#insert the path to the code here
             os.startfile(codePath)
 
         elif 'something' in queryy:
             while True:
 
                 command= takecommand().lower()
-                app_id='T7VPXR-U9R8WQ2XGA'
+                app_id='....' #insert the app id from wolframalpha
                 client = wolframalpha.Client(app_id)
                 res=client.query(command)
                 answer= next(res.results).text
@@ -152,7 +154,7 @@ if __name__ == "__main__":
                 speak(answer)
 
         elif 'show me the map of' in queryy:
-            api_key= 'AlzaSyA3ZNdkMwigujzDYANCY8XAUrtSz6l3eB4'
+            api_key= '....' # insert he api key from wolframalpha
             url= "https://maps.googleapis.com/maps/api/staticmap?"
             data=takecommand().lower()
             r = requests.get(url+'data='+data+'&key='+api_key)
@@ -171,7 +173,7 @@ if __name__ == "__main__":
             try:
                 speak("What should I say?")
                 content = takeCommand()
-                to = "saisri@gmail.com"    
+                to = "..." # insert the mail id you want to send the mail to   
                 sendEmail(to, content)
                 speak("Email has been sent!")
             except Exception as e:
